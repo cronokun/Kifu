@@ -3,7 +3,21 @@
 $: << File.join(File.dirname(__FILE__), '/../lib' )
 require 'kifu'
 
-if ARGV.empty?
+def print_short_usage
   puts "Usage: kifu command [arguments...] [options...]"
+end
+
+if ARGV.empty?
+  print_short_usage
   exit
+end
+
+command = ARGV.shift
+file = ARGV.shift
+
+case command
+when "info"
+  game = Kifu::SgfReader.new(file).parse
+else
+  print_short_usage
 end
