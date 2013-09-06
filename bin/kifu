@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+$: << File.join(File.dirname(__FILE__), '/../lib' )
+require 'kifu'
+
+if ARGV.empty?
+  puts "Usage: kifu command [arguments...] [options...]"
+  exit
+end
