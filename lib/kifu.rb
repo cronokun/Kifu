@@ -1,3 +1,5 @@
 require 'treetop'
 require 'kifu/sgf_reader'
 require 'kifu/sgf_parser'
+require 'kifu/game_builder'
+require 'kifu/game'
