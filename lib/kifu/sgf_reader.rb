@@ -7,7 +7,13 @@ module Kifu
     end
 
     def parse
-      # TODO
+      Kifu::SgfParser.new.parse(raw_sgf_data)
+    end
+
+    private
+
+    def raw_sgf_data
+      @_raw_sgf_data ||= open(file).read
     end
   end
 end

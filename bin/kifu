@@ -17,7 +17,7 @@ file = ARGV.shift
 
 case command
 when "info"
-  game = Kifu::SgfReader.new(file).parse
+  parsed_data = Kifu::SgfReader.new(file).parse
 else
   print_short_usage
 end
