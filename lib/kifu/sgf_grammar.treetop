@@ -1,0 +1,93 @@
+grammar Sgf
+
+  # SGF-4 EBNF Definition:
+  #
+  # Collection = GameTree { GameTree }
+  # GameTree   = "(" Sequence { GameTree } ")"
+  # Sequence   = Node { Node }
+  # Node       = ";" { Property }
+  # Property   = PropIdent PropValue { PropValue }
+  # PropIdent  = UcLetter { UcLetter }
+  # PropValue  = "[" CValueType "]"
+  # CValueType = (ValueType | Compose)
+  # ValueType  = (None | Number | Real | Double | Color | SimpleText | Text | Point  | Move | Stone)
+
+  rule game_tree
+    '(' sequence ')' {
+      def nodes
+        elements[1].nodes
+      end
+
+      def hashes
+        nodes.map(&:hash)
+      end
+    }
+  end
+
+  rule sequence
+    node+ {
+      def nodes
+        elements
+      end
+    }
+  end
+
+  rule node
+    ';' property* {
+
+      def multiple?
+        elements[1].elements.size > 1
+      end
+
+      def name
+        elements[1].elements[0].name
+      end
+
+      def value
+        elements[1].elements[0].value
+      end
+
+      def properties
+        elements[1].elements
+      end
+
+      def hash
+        properties.inject({}) { |hash, p| hash[p.name] = p.value; hash }
+      end
+    }
+  end
+
+  rule property
+    prop_ident prop_value+ {
+      def name
+        elements[0].text_value
+      end
+
+      def value
+        values = elements[1].elements.map(&:value)
+        values.size == 1 ? values.first : values
+      end
+    }
+  end
+
+  rule prop_ident
+    [A-Z]+
+  end
+
+  rule prop_value
+    '[' ('\]' / !']' .)* ']' {
+      def value
+        elements[1].text_value
+      end
+    }
+  end
+
+  rule c_comment
+    '/*'
+    (
+      !'*/'
+      (. / "\n")
+    )*
+    '*/'
+  end
+end
