@@ -5,7 +5,7 @@ Feature: print game info
   @wip
   Scenario: print basic game info
     Given application is not run yet
-    When I run `kifu info spec/fixtures/show_game_info.sgf`
+    When I run `kifu info spec/fixtures/show_simple_info.sgf`
     Then the output should contain:
     """
     Yasui Chitetsu vs Honinbo Dosaku
