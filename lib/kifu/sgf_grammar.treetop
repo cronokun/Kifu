@@ -33,7 +33,7 @@ grammar Sgf
   end
 
   rule node
-    ';' property* {
+    ';' property* new_line* {
 
       def multiple?
         elements[1].elements.size > 1
@@ -58,7 +58,7 @@ grammar Sgf
   end
 
   rule property
-    prop_ident prop_value+ {
+    prop_ident prop_value+ new_line* {
       def name
         elements[0].text_value
       end
@@ -82,12 +82,7 @@ grammar Sgf
     }
   end
 
-  rule c_comment
-    '/*'
-    (
-      !'*/'
-      (. / "\n")
-    )*
-    '*/'
+  rule new_line
+    "\n"
   end
 end
