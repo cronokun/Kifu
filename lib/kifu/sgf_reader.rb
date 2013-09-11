@@ -16,7 +16,7 @@ module Kifu
     private
 
     def raw_sgf_data
-      @_raw_sgf_data ||= open(file).read
+      @_raw_sgf_data ||= open(file).read.chomp
     end
   end
 end
