@@ -19,6 +19,7 @@ case command
 when "info"
   parsed_data = Kifu::SgfReader.new(file).parse
   game = Kifu::GameBuilder.new.build_from_sgf(parsed_data)
+  Kifu::Printer.new(game).print_info
 else
   print_short_usage
 end
