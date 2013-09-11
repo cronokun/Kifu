@@ -1,13 +1,16 @@
 module Kifu
   class SgfReader
-    attr_reader :file
+    attr_reader :file, :parser
 
     def initialize(file)
       @file = file
+      @parser = Kifu::SgfParser.new
     end
 
     def parse
-      Kifu::SgfParser.new.parse(raw_sgf_data)
+      parser.parse(raw_sgf_data).tap do |data|
+        raise(TypeError, "can't parse file") if data.nil?
+      end
     end
 
     private

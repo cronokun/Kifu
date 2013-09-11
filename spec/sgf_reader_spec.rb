@@ -12,9 +12,10 @@ describe Kifu::SgfReader do
   end
 
   describe "#parse" do
-    it "parses file" do
-      Kifu::SgfParser.any_instance.should_receive(:parse)
-      reader.parse
+    it "returns parsed data" do
+      parsed_data = double
+      Kifu::SgfParser.any_instance.should_receive(:parse).and_return(parsed_data)
+      expect(reader.parse).to eq parsed_data
     end
 
     context "bad file path" do
@@ -23,6 +24,15 @@ describe Kifu::SgfReader do
         expect {
           reader.parse
         }.to raise_error Errno::ENOENT
+      end
+    end
+
+    context "bad data in the file" do
+      it "raises an error" do
+        Kifu::SgfParser.any_instance.should_receive(:parse).and_return nil
+        expect {
+          reader.parse
+        }.to raise_error(TypeError, "can't parse file")
       end
     end
   end
