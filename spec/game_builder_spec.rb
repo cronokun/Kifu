@@ -20,6 +20,12 @@ describe Kifu::GameBuilder do
         expect(builder.game.white_rank).to eq '8d'
       end
     end
+
+    it "returns game" do
+      expect(
+        builder.build_from_sgf(data)
+      ).to eq builder.game
+    end
   end
 
   # Test data:

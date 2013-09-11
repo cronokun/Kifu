@@ -7,11 +7,16 @@ module Kifu
     end
 
     def build_from_sgf(data)
-      info = data.hashes.first # first node containds all game info
-      game.black_name = info['PB']
-      game.black_rank = info['BR']
-      game.white_name = info['PW']
-      game.white_rank = info['WR']
+      # first node containds all game info
+      data.hashes.first.tap do |info|
+        game.black_name = info['PB']
+        game.black_rank = info['BR']
+        game.white_name = info['PW']
+        game.white_rank = info['WR']
+      end
+
+      # return populated game
+      game
     end
   end
 end
