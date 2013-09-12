@@ -20,11 +20,16 @@ describe Kifu::Printer do
     before do
       game.black_name = 'Black'
       game.white_name = 'White'
+      game.comment = 'This is a test game'
       printer.print_info
     end
 
     it "prints header" do
       expect(output).to include "White vs Black\n--------------"
+    end
+
+    it "prints game comment" do
+      expect(output).to include 'This is a test game'
     end
   end
 end

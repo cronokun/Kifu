@@ -13,6 +13,7 @@ module Kifu
         game.black_rank = info['BR']
         game.white_name = info['PW']
         game.white_rank = info['WR']
+        game.comment = info['GC']
       end
 
       # return populated game

@@ -12,12 +12,19 @@ describe Kifu::GameBuilder do
 
   describe "#build_from_sgf" do
     context "game info" do
-      it "sets players name and rank" do
+      before do
         builder.build_from_sgf(data)
+      end
+
+      it "sets players name and rank" do
         expect(builder.game.black_name).to eq 'Honinbo Shusaku'
         expect(builder.game.white_name).to eq 'Honinbo Shuwa'
         expect(builder.game.black_rank).to eq '6d'
         expect(builder.game.white_rank).to eq '8d'
+      end
+
+      it "sets game comment" do
+        expect(builder.game.comment).to eq 'game from Hikaru no Go chapter 2, this version only in the anime'
       end
     end
 
@@ -35,7 +42,8 @@ describe Kifu::GameBuilder do
       'PB' => 'Honinbo Shusaku',
       'BR' => '6d',
       'PW' => 'Honinbo Shuwa',
-      'WR' => '8d'
+      'WR' => '8d',
+      'GC' => 'game from Hikaru no Go chapter 2, this version only in the anime'
     }]
   end
 end
