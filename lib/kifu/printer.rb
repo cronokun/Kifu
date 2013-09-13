@@ -10,6 +10,8 @@ module Kifu
     def print_info
       output << print_header
       output << print_game_comment
+      output << print_player_info(:white)
+      output << print_player_info(:black)
     end
 
     private
@@ -25,6 +27,21 @@ module Kifu
       else
         "\n\n"
       end
+    end
+
+    def print_player_info(color)
+      player, name, rank = case color
+                           when :black
+                             [ 'Black',
+                               game.black_name,
+                               game.black_rank || 'n/r' ]
+                           when :white
+                             [ 'White',
+                               game.white_name,
+                               game.white_rank || 'n/r' ]
+                           end
+
+      "#{player}: #{name} (#{rank})\n"
     end
   end
 end
