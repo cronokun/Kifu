@@ -26,6 +26,10 @@ describe Kifu::GameBuilder do
       it "sets game comment" do
         expect(builder.game.comment).to eq 'game from Hikaru no Go chapter 2, this version only in the anime'
       end
+
+      it "sets game result" do
+        expect(builder.game.result).to eq 'W+4'
+      end
     end
 
     it "returns game" do
@@ -43,7 +47,8 @@ describe Kifu::GameBuilder do
       'BR' => '6d',
       'PW' => 'Honinbo Shuwa',
       'WR' => '8d',
-      'GC' => 'game from Hikaru no Go chapter 2, this version only in the anime'
+      'GC' => 'game from Hikaru no Go chapter 2, this version only in the anime',
+      'RE' => 'W+4'
     }]
   end
 end

@@ -12,6 +12,7 @@ module Kifu
       output << print_game_comment
       output << print_player_info(:white)
       output << print_player_info(:black)
+      output << print_game_result
     end
 
     private
@@ -42,6 +43,12 @@ module Kifu
                            end
 
       "#{player}: #{name} (#{rank})\n"
+    end
+
+    def print_game_result
+      winner, points = game.result.split('+')
+      winner = winner == 'B' ? 'Black' : 'White'
+      "#{winner} wins by #{points} points\n"
     end
   end
 end

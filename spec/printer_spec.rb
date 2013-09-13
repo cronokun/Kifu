@@ -23,6 +23,7 @@ describe Kifu::Printer do
       game.white_name = 'Takemiya Masaki'
       game.white_rank = '9d'
       game.comment = 'This is a test game'
+      game.result = 'B+2.5'
       printer.print_info
     end
 
@@ -40,6 +41,10 @@ describe Kifu::Printer do
 
     it "prints black player's name and rank" do
       expect(output).to include 'Black: Otake Hideo (n/r)'
+    end
+
+    it "prints game result" do
+      expect(output).to include 'Black wins by 2.5 points'
     end
   end
 end

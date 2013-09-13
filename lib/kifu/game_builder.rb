@@ -14,6 +14,7 @@ module Kifu
         game.white_name = info['PW']
         game.white_rank = info['WR']
         game.comment = info['GC']
+        game.result  = info['RE']
       end
 
       # return populated game
