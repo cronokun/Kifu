@@ -13,7 +13,7 @@ Feature: print game info
 
     Hikaru no Go chap 001, manga only
 
-    White: Yasui Chitetsu (n/a)
-    Black: Honinbo Dosaku (n/a)
+    White: Yasui Chitetsu (n/r)
+    Black: Honinbo Dosaku (n/r)
     White wins by 4 points
     """
