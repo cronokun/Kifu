@@ -7,8 +7,12 @@ module Kifu
         @lines = []
       end
 
-      def puts(str = nil)
-        lines << str
+      def puts(*strings)
+        if strings.empty?
+          lines << ''
+        else
+          lines.concat(strings)
+        end
       end
 
       def output

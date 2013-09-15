@@ -15,9 +15,14 @@ describe Kifu::CLI::Output do
       expect(output.lines).to include 'All your base are belong to us!'
     end
 
+    it "adds multiple lines to the output" do
+      output.puts 'First line', 'Second line'
+      expect(output.lines).to match_array ['First line', 'Second line']
+    end
+
     it "adds empty line when argument is omitted" do
       output.puts
-      expect(output.lines).to include nil
+      expect(output.lines).to include ''
     end
   end
 
