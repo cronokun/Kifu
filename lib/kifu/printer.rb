@@ -19,14 +19,13 @@ module Kifu
 
     def print_header
       header = "#{game.white_name} vs #{game.black_name}"
-      output.puts header
-      output.puts '-' * header.length
-      output.puts
+      output.puts '', header, '-' * header.length, ''
     end
 
     def print_game_comment
-      output.puts game.comment if game.comment && !game.comment.empty?
-      output.puts
+      if game.comment && !game.comment.empty?
+        output.puts game.comment, ''
+      end
     end
 
     def print_player_info(color)
