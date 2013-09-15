@@ -10,12 +10,12 @@ describe Kifu::Printer do
     end
 
     it "creates new output" do
-      expect(printer.output).to eq ''
+      expect(printer.output).to be_kind_of Kifu::CLI::Output
     end
   end
 
   describe "#print_info" do
-    let(:output) { printer.output }
+    let(:output) { printer.output.output }
 
     before do
       game.black_name = 'Otake Hideo'

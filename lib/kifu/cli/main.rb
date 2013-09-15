@@ -17,7 +17,7 @@ module Kifu
           game        = Kifu::GameBuilder.new.build_from_sgf(parsed_data)
           printer     = Kifu::Printer.new(game)
           printer.print_info
-          puts printer.output
+          $stdout.print printer.output
         else
           print_short_usage
         end
