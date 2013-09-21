@@ -3,6 +3,5 @@
 $: << File.join(File.dirname(__FILE__), '/../lib' )
 require 'kifu'
 require 'kifu/cli/main'
-extend Kifu::CLI::Main
 
-main()
+Kifu::CLI::Main.start(ARGV)
