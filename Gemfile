@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'treetop'
+gem 'thor'
 
 group :test do
   gem 'rspec'
